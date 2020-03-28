@@ -1,1 +1,1 @@
-# tcp-port-scanner
+Basic port scanner.
