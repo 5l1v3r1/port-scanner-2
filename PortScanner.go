@@ -6,12 +6,20 @@ import (
 	"sort"
 )
 
-var input string
+// Global variables.
+var (
+	input    string
+	portNums int
+)
 
-// Function that holds host to be scanned.
+// Function for user input.
 func host() {
-	fmt.Println("Enter the IP/Host you want scanned: ")
+	fmt.Println("[+] Enter the IP/Host you want scanned: ")
 	fmt.Scanln(&input)
+
+	fmt.Println("[+] Enter the highest port # you want scanned:  ex: 1 or 65535")
+	fmt.Scanln(&portNums)
+
 }
 
 /* Function that creates two channels and loops through
@@ -40,12 +48,12 @@ func main() {
 		go worker(ports, results)
 	}
 	go func() {
-		for i := 1; i <= 1024; i++ {
+		for i := 1; i <= portNums; i++ {
 			ports <- i
 		}
 	}()
 
-	for i := 0; i < 1024; i++ {
+	for i := 0; i < portNums; i++ {
 		port := <-results
 		if port != 0 {
 			openports = append(openports, port)
