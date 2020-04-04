@@ -1,1 +1,1 @@
-Basic port scanner.
+Basic port scanner using goroutines.
